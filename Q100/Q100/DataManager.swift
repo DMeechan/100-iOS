@@ -6,9 +6,9 @@
 //  Copyright © 2017 Rogue Studios. All rights reserved.
 //
 
-import Foundation
 import CoreData
 import UIKit
+import FirebaseAnalytics
 
 class DataManager {
 
@@ -277,6 +277,28 @@ class DataManager {
     }
     
   }
+  
+  // MARK: Log events
+  
+  static func logEvent(eventName: String) {
+    let qNum = Int(DataManager.shared.users[0].questionNum)
+    let user = DataManager.shared.users[0]
+    let qStat = DataManager.shared.questionStats[qNum]
+    
+    Analytics.logEvent(eventName, parameters: [
+      "buildNum": NSString(string: user.buildNum!) as NSObject,
+      "hintsNum": NSInteger(exactly: user.hintsNum)! as NSObject,
+      "questionNum": NSInteger(exactly: user.questionNum)! as NSObject,
+      "incorrectGuesses": NSInteger(exactly: qStat.incorrectGuesses)! as NSObject,
+      "timeTaken": NSInteger(exactly: qStat.timeTaken)! as NSObject,
+      "hintsUsed": NSInteger(exactly: qStat.hintsUsed)! as NSObject,
+      
+      ])
+    
+  }
+  
+  
+  // MARK: Import question data
   
   func importQuestionData() {
     if questions.count == 0 {

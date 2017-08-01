@@ -17,6 +17,8 @@
 		656CA3481F1E660200D7F364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656CA3471F1E660200D7F364 /* Assets.xcassets */; };
 		656CA34B1F1E660200D7F364 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656CA3491F1E660200D7F364 /* LaunchScreen.storyboard */; };
 		656CA3581F1E6EDA00D7F364 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CA3571F1E6EDA00D7F364 /* QuestionViewController.swift */; };
+		6598B4021F30948400A43D0B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6598B4011F30948400A43D0B /* AdSupport.framework */; };
+		6598B4041F30976900A43D0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6598B4031F30976900A43D0B /* GoogleService-Info.plist */; };
 		65D774101F2396F5007FE420 /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D7740F1F2396F5007FE420 /* WinnerViewController.swift */; };
 		65D7741A1F23BEBC007FE420 /* BeginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D774191F23BEBC007FE420 /* BeginViewController.swift */; };
 		C6EA3A7527574592A41EA718 /* Pods_Q100.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063312B85EEF3B77BEA9DAA0 /* Pods_Q100.framework */; };
@@ -39,6 +41,8 @@
 		656CA34C1F1E660200D7F364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		656CA3521F1E666900D7F364 /* Q100.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Q100.entitlements; sourceTree = "<group>"; };
 		656CA3571F1E6EDA00D7F364 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		6598B4011F30948400A43D0B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		6598B4031F30976900A43D0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		65D7740F1F2396F5007FE420 /* WinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		65D774191F23BEBC007FE420 /* BeginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6598B4021F30948400A43D0B /* AdSupport.framework in Frameworks */,
 				C6EA3A7527574592A41EA718 /* Pods_Q100.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +67,7 @@
 				6561C9411F203DC500F35E44 /* Question+CoreDataProperties.swift */,
 				656CA33D1F1E660200D7F364 /* AppDelegate.swift */,
 				656CA3521F1E666900D7F364 /* Q100.entitlements */,
+				6598B4031F30976900A43D0B /* GoogleService-Info.plist */,
 				656CA34C1F1E660200D7F364 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -141,6 +147,7 @@
 		D6270610EAFD1813B71F3A63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6598B4011F30948400A43D0B /* AdSupport.framework */,
 				063312B85EEF3B77BEA9DAA0 /* Pods_Q100.framework */,
 			);
 			name = Frameworks;
@@ -215,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				656CA34B1F1E660200D7F364 /* LaunchScreen.storyboard in Resources */,
+				6598B4041F30976900A43D0B /* GoogleService-Info.plist in Resources */,
 				656CA3481F1E660200D7F364 /* Assets.xcassets in Resources */,
 				656CA3431F1E660200D7F364 /* Main.storyboard in Resources */,
 			);

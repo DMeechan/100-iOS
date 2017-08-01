@@ -57,8 +57,9 @@
                                     <color key="titleColor" red="0.16279992460000001" green="0.73269087079999995" blue="0.60663831229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="aboutClicked:" destination="vpO-a7-Neg" eventType="touchUpInside" id="SWa-EY-Kb0"/>
                                     <action selector="backBtnClicked:" destination="M9M-p4-yyk" eventType="touchUpInside" id="af3-KL-hCK"/>
-                                    <segue destination="cDo-CY-JPz" kind="show" id="rdR-oE-SFK"/>
+                                    <segue destination="cDo-CY-JPz" kind="show" identifier="switchToAboutView" id="rdR-oE-SFK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -177,7 +178,7 @@
                                         </constraints>
                                         <color key="textColor" red="0.16279992460000001" green="0.73269087079999995" blue="0.60663831229999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Z1n-1d-45l" userLabel="SubmitButton">
                                         <rect key="frame" x="0.0" y="219" width="323" height="40"/>
@@ -418,7 +419,7 @@ I am a hint</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAd-W7-VsC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1417" y="538"/>
+            <point key="canvasLocation" x="1514" y="681"/>
         </scene>
         <!--WinnerView-->
         <scene sceneID="jmx-PY-ry5">
@@ -531,7 +532,7 @@ Let's see who will be the first to complete them!</string>
         <image name="website" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2te-fp-Dfe"/>
         <segue reference="7cV-En-RWI"/>
+        <segue reference="ZlF-6a-74i"/>
     </inferredMetricsTieBreakers>
 </document>

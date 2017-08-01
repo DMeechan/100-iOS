@@ -7,6 +7,7 @@ target 'Q100' do
 
   # Pods for Q100
   pod 'Google-Mobile-Ads-SDK'
+  pod 'Firebase/Core'
   # pod ‘Versions’
   # pod 'ObjectMapper', '~> 2.2'
   # pod ‘SwiftyJSON’

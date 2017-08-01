@@ -25,14 +25,14 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
   override func viewDidLoad() {
     super.viewDidLoad()
     // NOTE: REMEMBER TO saveData() AFTER EDITING A STORED OBJECT!
-  
+    
     // DATA:
     //loadInitialData(testingData: false, resetData: false)
-      
+    
     // users[0].questionsSinceAd = 3
     // users[0].questionNum = 98
     // saveData()
-
+    
     
     // USER INTERFACE:
     createBannerAd()
@@ -45,7 +45,8 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     
     createRewardVideoAd()
     createInterstitialAd()
-
+    
+    DataManager.logEvent(eventName: "loadQuestionView")
     
   }
   
@@ -54,12 +55,12 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     if Int(DataManager.shared.users[0].questionNum) == DataManager.shared.questions.count {
       userHasWon()
     }
-
-  }
     
-    func switchToWinnerView() {
-        performSegue(withIdentifier: "switchToWinnerView", sender: self)
-    }
+  }
+  
+  func switchToWinnerView() {
+    performSegue(withIdentifier: "switchToWinnerView", sender: self)
+  }
   
   func runTimer() {
     
@@ -77,7 +78,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       
     }
     
-
+    
     
   }
   
@@ -140,7 +141,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
         }
         
         DataManager.shared.users[0].questionsSinceAd = 0
-
+        
         
       }
       
@@ -200,7 +201,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       
       alert2.addAction(UIAlertAction(title: "No, thanks", style: UIAlertActionStyle.default, handler: { (action) in
         alert.dismiss(animated: true, completion: nil)
-      print("USER: RATE ON APP STORE: NO")
+        print("USER: RATE ON APP STORE: NO")
         self.fireTimer()
         
       }))
@@ -221,7 +222,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       
       alert2.addAction(UIAlertAction(title: "Ok, sure", style: UIAlertActionStyle.cancel, handler: { (action) in
         alert.dismiss(animated: true, completion: nil)
-      print("USER: FEEDBACK: YES")
+        print("USER: FEEDBACK: YES")
         // Open up email dialogue for feedback
         let email = "hello@roguestudios.co"
         if let feedbackURL = URL(string: "mailto:\(email)?subject=I%20have%20feedback%20for%20100%20on%20iOS!") {
@@ -233,7 +234,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       
       alert2.addAction(UIAlertAction(title: "Maybe later", style: UIAlertActionStyle.default, handler: { (action) in
         alert.dismiss(animated: true, completion: nil)
-      print("USER: FEEDBACK: NO")
+        print("USER: FEEDBACK: NO")
         self.fireTimer()
         
       }))
@@ -262,7 +263,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       } else if guess.contains(answers[i]) && answers[i].characters.count != 1 {
         // Make sure that it doesn't check if answer contains guess if answer is one letter, like 'h'
         correct = true
-      
+        
       } else if answers[i].characters.count != 1 {
         let pluralAnswer = answers[i].appending("s")
         // Opportunity here for recursion??
@@ -339,11 +340,11 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       }))
       
       self.present(alert, animated: true, completion: nil)
-        
+      
     }
     
     DataManager.shared.saveData()
-      
+    
   }
   
   func importTestQuestions() {
@@ -357,7 +358,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
   
   // MARK: Google AdMob
   
-
+  
   func getAdID (testingAds: Bool, bannerOrPostOrHint: Int) -> String {
     
     var bannerAdId: String = ""       // Banner ad
@@ -380,18 +381,18 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     }
     
     switch(bannerOrPostOrHint) {
-      case 0:
-        return bannerAdId
-
-      case 1:
-        return postQuestionAdId
-
-      case 2:
-        return hintRewardAdId
-
-      default:
-        print("Invalid getAdId() input: ", bannerOrPostOrHint)
-        return "Invalid input!"
+    case 0:
+      return bannerAdId
+      
+    case 1:
+      return postQuestionAdId
+      
+    case 2:
+      return hintRewardAdId
+      
+    default:
+      print("Invalid getAdId() input: ", bannerOrPostOrHint)
+      return "Invalid input!"
       
     }
     
@@ -407,7 +408,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     setTestDevice(request: request)
     
     GADRewardBasedVideoAd.sharedInstance().load(request,
-      withAdUnitID: getAdID(testingAds: false, bannerOrPostOrHint: 2))
+                                                withAdUnitID: getAdID(testingAds: false, bannerOrPostOrHint: 2))
     
     print("Reward ad created")
     
@@ -440,11 +441,11 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     } else {
       createAlert(title: "Unable to load ad :(", message: "Please check your internet connection", acceptanceText: "Ok!")
       print("Tried 3 times & still can't load reward ad; giving up")
-  
+      
     }
-  
+    
   }
-
+  
   func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
     // Reward video ad was closed; need to create the next one
     print("Reward based video ad is closed.")
@@ -469,7 +470,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     // Now create another ad, ready for next time
     createRewardVideoAd()
   }
-
+  
   func createInterstitialAd() {
     
     interstitialAd = GADInterstitial(adUnitID: getAdID(testingAds: false, bannerOrPostOrHint: 1))
@@ -499,7 +500,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       // createAlert(title: "Ad not loaded yet. Trying again in 1 second...", message: "Attempt: \(attemptNum)", acceptanceText: "Ok!")
       
       Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector (QuestionViewController.loadInterstitialAd(_:)), userInfo: (attemptNum + 1), repeats: false)
-
+      
       print("Interstitial ad wasn't ready; retrying")
       
     } else {
@@ -526,22 +527,22 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     print("User received interstitial ad")
   }
   
-
+  
   func setTestDevice(request: GADRequest) {
-
+    
     if testingAds {
       request.testDevices = [ kGADSimulatorID,  // All simulators
         "a97f268c2e35184ca641fac156d63884" ];   // Device ID - iPhone 5S White
     }
-
-
+    
+    
   }
   
   func createBannerAd() {
     print("Initializing banner ad")
     // bannerView.delegate = self
     //bannerAdView = GADBannerView(adSize: kGADAdSizeBanner)
-
+    
     bannerAdView.adUnitID = getAdID(testingAds: false, bannerOrPostOrHint: 0)
     bannerAdView.rootViewController = self
     
@@ -681,7 +682,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
     UIView.commitAnimations()
   }
-
+  
   
   func setUIMode(mode: Int) {
     // 0 = default
@@ -714,7 +715,7 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
       self.view.backgroundColor = UIColor(red:0.59, green:0.16, blue:0.11, alpha:1.0)
       
     }
-  
+    
   }
   
   // MARK: Alerts
@@ -778,19 +779,19 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-    
+  
   @IBOutlet weak var questionNumLabel: UILabel!
   @IBOutlet weak var timerLabel: UILabel!
-    
+  
   @IBOutlet weak var questionLabel: UILabel!
   @IBOutlet weak var hintButton: UIButton!
   @IBOutlet weak var answerField: UITextField!
-    
+  
   @IBOutlet weak var submitButton: UIButton!
   @IBOutlet weak var hintLabel: UILabel!
-    
-        @IBOutlet weak var bannerAdView: GADBannerView!
-    
+  
+  @IBOutlet weak var bannerAdView: GADBannerView!
+  
   @IBAction func backBtnClicked(_ sender: Any) {
     // Save data!
     DataManager.shared.saveData()
@@ -799,20 +800,27 @@ class QuestionViewController: UIViewController, UITextFieldDelegate, GADIntersti
     if timer.isValid {
       timer.invalidate()
     }
+    // DataManager.logEvent(eventName: "clickBack")
     
   }
+  
 
-    
+  
+  
   @IBAction func hintBtnClicked(_ sender: Any) {
     hideKeyboard()
     useHint()
     DataManager.shared.saveData()
+    DataManager.logEvent(eventName: "clickHint")
+    
   }
   
   @IBAction func submitBtnClicked(_ sender: Any) {
-    submitGuess()
     hideKeyboard()
+    
+    submitGuess()
     DataManager.shared.saveData()
+    DataManager.logEvent(eventName: "clickSubmit")
     print("User questions left: \(DataManager.shared.users[0].questionsSinceAd)")
     
   }
